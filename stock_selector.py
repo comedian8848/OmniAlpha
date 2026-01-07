@@ -6,13 +6,14 @@ import sys
 
 # 引入我们定义的模块
 from strategy_interface import StockStrategy
-from strategies import MovingAverageStrategy, VolumeRiseStrategy, LowPeStrategy
+from strategies import MovingAverageStrategy, VolumeRiseStrategy, LowPeStrategy, HighTurnoverStrategy
 
 # 注册可用策略
 AVAILABLE_STRATEGIES = {
     'ma': MovingAverageStrategy(),
     'vol': VolumeRiseStrategy(),
-    # 'pe': LowPeStrategy() # 暂时禁用，未实现完整数据获取
+    'pe': LowPeStrategy(),
+    'turn': HighTurnoverStrategy()
 }
 
 def get_latest_trading_date():

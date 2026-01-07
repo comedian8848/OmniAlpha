@@ -37,7 +37,7 @@ class StockStrategy(ABC):
         start_date = (datetime.datetime.strptime(end_date, "%Y-%m-%d") - datetime.timedelta(days=60)).strftime("%Y-%m-%d")
         
         rs = bs.query_history_k_data_plus(code,
-            "date,code,open,high,low,close,volume,amount,pctChg",
+            "date,code,open,high,low,close,volume,amount,pctChg,peTTM,pbMRQ,turn,isST",
             start_date=start_date, end_date=end_date,
             frequency="d", adjustflag="3")
         
@@ -50,7 +50,7 @@ class StockStrategy(ABC):
 
         df = pd.DataFrame(data_list, columns=rs.fields)
         # 类型转换
-        numeric_cols = ['open', 'high', 'low', 'close', 'volume', 'amount', 'pctChg']
+        numeric_cols = ['open', 'high', 'low', 'close', 'volume', 'amount', 'pctChg', 'peTTM', 'pbMRQ', 'turn']
         for col in numeric_cols:
             if col in df.columns:
                 df[col] = pd.to_numeric(df[col], errors='coerce')

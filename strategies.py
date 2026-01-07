@@ -67,19 +67,57 @@ class VolumeRiseStrategy(StockStrategy):
         return False, {}
 
 class LowPeStrategy(StockStrategy):
-    """
-    需要基本的财务数据，demo中暂时用 close 模拟逻辑，
-    实际应在 prepare_data 中获取 peTTM。
-    此处仅为占位演示多策略架构。
-    """
     @property
     def name(self):
-        return "Low_PE_Demo"
+        return "Value_LowPE"
         
     @property
     def description(self):
-        return "低估值演示 (仅作架构演示，未连接财务数据)"
+        return "低估值策略: 0 < PE_TTM < 30"
         
     def check(self, code, df):
-        # 假设这里有一个逻辑
+        if df is None or len(df) < 1:
+            return False, {}
+            
+        last_row = df.iloc[-1]
+        
+        # 确保字段存在
+        if 'peTTM' not in last_row:
+            return False, {}
+            
+        pe = last_row['peTTM']
+        
+        # 排除亏损股(pe<0)和高估值股
+        if 0 < pe < 30:
+            return True, {
+                'price': last_row['close'],
+                'peTTM': round(pe, 2),
+                'pbMRQ': round(last_row.get('pbMRQ', 0), 2)
+            }
+        return False, {}
+
+class HighTurnoverStrategy(StockStrategy):
+    @property
+    def name(self):
+        return "High_Turnover"
+        
+    @property
+    def description(self):
+        return "资金活跃: 换手率 > 5% 且非 ST"
+        
+    def check(self, code, df):
+        if df is None or len(df) < 1:
+            return False, {}
+            
+        last_row = df.iloc[-1]
+        turn = last_row.get('turn', 0)
+        is_st = last_row.get('isST', '0') # '1' is ST, '0' is Normal
+        
+        # 排除ST股，且换手率 > 5%
+        if turn > 5 and str(is_st) != '1':
+            return True, {
+                'price': last_row['close'],
+                'turn': round(turn, 2),
+                'pctChg': round(last_row.get('pctChg', 0), 2)
+            }
         return False, {}
