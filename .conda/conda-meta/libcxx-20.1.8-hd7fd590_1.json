@@ -1,0 +1,48 @@
+{
+  "build": "hd7fd590_1",
+  "build_number": 1,
+  "channel": "https://repo.anaconda.com/pkgs/main/osx-arm64",
+  "constrains": [],
+  "depends": [
+    "__osx >=12.1"
+  ],
+  "extracted_package_dir": "/opt/anaconda3/pkgs/libcxx-20.1.8-hd7fd590_1",
+  "files": [
+    "lib/libc++.1.0.dylib",
+    "lib/libc++.1.dylib"
+  ],
+  "fn": "libcxx-20.1.8-hd7fd590_1.conda",
+  "license": "Apache-2.0 WITH LLVM-exception",
+  "link": {
+    "source": "/opt/anaconda3/pkgs/libcxx-20.1.8-hd7fd590_1",
+    "type": 1
+  },
+  "md5": "02d2574054620eb78f179206f97fa5c9",
+  "name": "libcxx",
+  "package_tarball_full_path": "/opt/anaconda3/pkgs/libcxx-20.1.8-hd7fd590_1.conda",
+  "paths_data": {
+    "paths": [
+      {
+        "_path": "lib/libc++.1.0.dylib",
+        "path_type": "hardlink",
+        "sha256": "4896bc91c0c44ed63601729a9de9af7b12e043188f18d0a14bd795b4d8f5fbd6",
+        "sha256_in_prefix": "4896bc91c0c44ed63601729a9de9af7b12e043188f18d0a14bd795b4d8f5fbd6",
+        "size_in_bytes": 1169184
+      },
+      {
+        "_path": "lib/libc++.1.dylib",
+        "path_type": "softlink",
+        "sha256": "4896bc91c0c44ed63601729a9de9af7b12e043188f18d0a14bd795b4d8f5fbd6",
+        "size_in_bytes": 1169184
+      }
+    ],
+    "paths_version": 1
+  },
+  "requested_spec": "None",
+  "sha256": "57297359e5bafac8f0e8605b68cdf33c57565f4477c137cae715de006b870acb",
+  "size": 313696,
+  "subdir": "osx-arm64",
+  "timestamp": 1760650493000,
+  "url": "https://repo.anaconda.com/pkgs/main/osx-arm64/libcxx-20.1.8-hd7fd590_1.conda",
+  "version": "20.1.8"
+}
